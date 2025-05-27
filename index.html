@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BioLips</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #600020;
+      color: #F9ECE1;
+    }
+
+    header {
+      background-color: #600020;
+      color: #F9ECE1;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    header .logo {
+      height: 50px;
+      width: auto;
+      border-radius: 8px;
+      object-fit: contain;
+      filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      margin: 0 0 0 10px;
+      font-size: 1rem;
+      color: #F9ECE1;
+    }
+
+    @media screen and (max-width: 600px) {
+      header {
+        flex-direction: column;
+      }
+
+      header p {
+        margin: 5px 0 0 0;
+      }
+    }
+
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px 40px;
+    }
+
+    .producto {
+      width: 250px;
+      background-color: #F9ECE1;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      color: #600020;
+    }
+
+    .producto:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .producto img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      filter: brightness(1) contrast(1.1);
+    }
+
+    .producto img:hover {
+      transform: scale(1.1);
+      filter: brightness(1.1) saturate(1.2);
+    }
+
+    .producto h3 {
+      font-size: 1.1rem;
+      margin: 10px 0 5px;
+    }
+
+    .producto p.descripcion {
+      font-size: 0.9rem;
+      color: #8B5E3C;
+      margin-bottom: 8px;
+    }
+
+    .producto p.precio {
+      font-weight: bold;
+      color: #C97C5D;
+    }
+
+    .producto button {
+      background-color: #8B5E3C;
+      color: #F9ECE1;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .producto button:hover {
+      background-color: #600020;
+      transform: scale(1.1);
+    }
+
+    .toggle-carrito {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #C97C5D;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 9999;
+    }
+
+    .carrito {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #F9ECE1;
+      color: #600020;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      max-width: 320px;
+      z-index: 999;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .carrito.mostrar {
+      display: flex;
+    }
+
+    .carrito h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .carrito ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .carrito li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+
+    .carrito li button {
+      background: transparent;
+      border: none;
+      color: #C97C5D;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .carrito-total {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .carrito button.action {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    .vaciar {
+      background-color: #8B5E3C;
+      color: white;
+    }
+
+    .vaciar:hover {
+      background-color: #600020;
+    }
+
+    .comprar {
+      background-color: #C97C5D;
+      color: white;
+    }
+
+    .comprar:hover {
+      background-color: #8B5E3C;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="img/biolips.jpeg" alt="Logo BioLips" class="logo" />
+    <h1>BioLips</h1>
+    <p>Descubre tu tono ideal</p>
+  </header>
+
+  <div class="productos">
+    <div class="producto vino">
+      <img src="img/vinotinto.jpg" alt="Labial Vino Tinto Profundo" />
+      <h3>Vino Tinto Profundo</h3>
+      <p class="descripcion">Color fuerte para una identidad visual impactante y elegante.</p>
+      <p class="precio">$28.000</p>
+      <button onclick="agregarAlCarrito('Vino Tinto Profundo', 28000)">Agregar</button>
+    </div>
+
+    <div class="producto cafe">
+      <img src="img/cafecalido.jpg" alt="Labial Café Cálido" />
+      <h3>Café Cálido</h3>
+      <p class="descripcion">Tono cálido, natural y acogedor, ideal para el uso diario.</p>
+      <p class="precio">$26.000</p>
+      <button onclick="agregarAlCarrito('Café Cálido', 26000)">Agregar</button>
+    </div>
+
+    <div class="producto terracota">
+      <img src="img/terracotasuave.jpg" alt="Labial Terracota Suave" />
+      <h3>Terracota Suave</h3>
+      <p class="descripcion">Perfecto para un look cálido y cercano con un toque moderno.</p>
+      <p class="precio">$27.000</p>
+      <button onclick="agregarAlCarrito('Terracota Suave', 27000)">Agregar</button>
+    </div>
+
+    <div class="producto champan">
+      <img src="img/champanclaro.jpg" alt="Labial Champán Claro" />
+      <h3>Champán Claro</h3>
+      <p class="descripcion">Estética limpia, moderna y natural, ideal para cualquier ocasión.</p>
+      <p class="precio">$25.000</p>
+      <button onclick="agregarAlCarrito('Champán Claro', 25000)">Agregar</button>
+    </div>
+  </div>
+
+  <button class="toggle-carrito" onclick="toggleCarrito()">🛍 Ver Carrito</button>
+
+  <div class="carrito" id="carrito">
+    <h2>Carrito</h2>
+    <ul id="lista-carrito"></ul>
+    <div class="carrito-total" id="total"></div>
+    <button class="action vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+    <button class="action comprar" onclick="finalizarCompra()">Finalizar Compra</button>
+  </div>
+
+  <script>
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    function actualizarCarrito() {
+      const lista = document.getElementById('lista-carrito');
+      const totalDiv = document.getElementById('total');
+      lista.innerHTML = '';
+      let total = 0;
+
+      carrito.forEach((producto, index) => {
+        const item = document.createElement('li');
+        item.innerHTML = `${producto.nombre} <span>$${producto.precio.toLocaleString()}</span> <button onclick="eliminarDelCarrito(${index})">✕</button>`;
+        lista.appendChild(item);
+        total += producto.precio;
+      });
+
+      totalDiv.textContent = `Total: $${total.toLocaleString()}`;
+    }
+
+    function agregarAlCarrito(nombre, precio) {
+      carrito.push({ nombre, precio });
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarCarrito();
+    }
+
+    function eliminarDelCarrito(index) {
+      carrito.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarCarrito();
+    }
+
+    function vaciarCarrito() {
+      carrito = [];
+      localStorage.removeItem('carrito');
+      actualizarCarrito();
+    }
+
+    function finalizarCompra() {
+      alert('¡Gracias por tu compra en BioLips!');
+      vaciarCarrito();
+    }
+
+    function toggleCarrito() {
+      document.getElementById('carrito').classList.toggle('mostrar');
+    }
+
+    actualizarCarrito();
+  </script>
+</body>
+</html>
